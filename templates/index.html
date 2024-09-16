@@ -14,14 +14,12 @@
       <h1>Tic Tac Toe</h1>
       <div class="board">
         {% for index in range(9) %}
-        <a href="{{ url_for('play', cell=index) }}" class="cell"
-          >{{ board.convert_list()[index] }}</a
-        >
+        <a href="{{ url_for('play', cell=index) }}" class="cell">{{ board.convert_list()[index] }}</a>
         {% endfor %}
       </div>
       {% if winner %}
-      <p class="result">Player {{ winner }} wins!</p>
-      {% elif draw %}
+      <p class="result">Player {{ board.check_winner() }} wins!</p>
+      {% elif board.check_draw() %}
       <p class="result">It's a draw!</p>
       {% else %}
       <p class="current-player">Current Player: {{ current_player }}</p>

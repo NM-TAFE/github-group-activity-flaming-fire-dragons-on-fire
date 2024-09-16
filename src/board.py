@@ -5,6 +5,15 @@ class Board:
         self.Grid = self.create_grid()
 
     def create_grid(self):
+        """
+                Creates a 2D grid (list of lists) with the dimensions specified by the
+                `Rows` and `Columns` attributes. Each cell in the grid is initialized
+                with a space character (' ').
+
+                Returns:
+                    list: A 2D list representing the grid, where each cell is initialized
+                          with a space character (' ').
+        """
         grid = []
         for i in range(self.Rows):
             row = []
@@ -14,6 +23,21 @@ class Board:
         return grid
 
     def get_move(self, player, move):
+        """
+                Updates the board with the player's move.
+
+                This method places the player's symbol at the specified position on the board
+                if the position is valid and currently unoccupied.
+
+                Args:
+                    player (str): The symbol representing the player (e.g., 'x' or 'o').
+                    move (int): The position on the board where the player wants to place their symbol.
+                                The position is treated as a single integer representing the cell index
+                                in a flattened version of the 2D grid (row-major order).
+
+                Returns:
+                    None
+                """
         grid_position = -1
         for i in range(self.Rows):
             for j in range(self.Columns):
@@ -22,6 +46,15 @@ class Board:
                     self.Grid[i][j] = player
 
     def convert_list(self):
+        """
+                Converts the 2D grid into a 1D list.
+
+                This method flattens the 2D grid (list of lists) into a single 1D list,
+                preserving the row-major order of the elements.
+
+                Returns:
+                    list: A 1D list containing all the elements of the 2D grid in row-major order.
+                """
         one_d_list = []
         for i in range(self.Rows):
             for j in range(self.Columns):
@@ -29,6 +62,22 @@ class Board:
         return one_d_list
 
     def get_x_and_y(self, move):
+        """
+                Converts a move index to its corresponding row and column indices in the grid.
+
+                This method takes a move index, which represents a cell in a flattened version
+                of the 2D grid (row-major order), and converts it to the corresponding row and
+                column indices in the 2D grid.
+
+                Args:
+                    move (int): The position on the board where the player wants to place their symbol.
+                                The position is treated as a single integer representing the cell index
+                                in a flattened version of the 2D grid (row-major order).
+
+                Returns:
+                    tuple: A tuple (i, j) where 'i' is the row index and 'j' is the column index
+                           corresponding to the given move index.
+                """
         grid_position = -1
         for i in range(self.Rows):
             for j in range(self.Columns):
@@ -37,6 +86,22 @@ class Board:
                     return i, j
 
     def check_winner(self, current_player, move):
+        """
+            Checks if the current player has won the game after making a move.
+
+            This method checks for a win condition by examining the rows, columns, and diagonals
+            affected by the latest move. It returns the symbol of the winning player if a win
+            condition is met, otherwise it returns None.
+
+            Args:
+                current_player (str): The symbol representing the current player (e.g., 'x' or 'o').
+                move (int): The position on the board where the player has placed their symbol.
+                            The position is treated as a single integer representing the cell index
+                            in a flattened version of the 2D grid (row-major order).
+
+            Returns:
+                str or None: The symbol of the winning player if a win condition is met, otherwise None.
+            """
         # Check for win by only checking through the rows and columns affected by the latest move
         if move is None:
             return None
@@ -84,6 +149,16 @@ class Board:
         return winner
 
     def check_draw(self):
+        """
+                Checks if the game has ended in a draw.
+
+                This method determines if the game is a draw by checking if there are no empty cells
+                (represented by a space character ' ') left in the grid. If there are no empty cells,
+                it means all positions on the board are occupied and no player has won, resulting in a draw.
+
+                Returns:
+                    bool: True if the game is a draw (no empty cells left), False otherwise.
+                """
         return ' ' not in self.Grid
 
     def reset_board(self):
