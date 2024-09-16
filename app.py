@@ -13,6 +13,7 @@ board = Board(3, 3)
 
 @app.route('/')
 def index():
+
     winner = board.check_winner(game.CurrentPlayer, None)
     draw = board.check_draw()
     current_player = game.CurrentPlayer
