@@ -86,6 +86,8 @@ class Board:
     def check_draw(self):
         return ' ' not in self.Grid
 
+    def reset_board(self):
+        self.Grid = self.create_grid()
 
 if __name__ == '__main__':
     board = Board(3, 3)

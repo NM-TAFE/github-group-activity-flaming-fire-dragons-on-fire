@@ -15,7 +15,7 @@
       <div class="board">
         {% for index in range(9) %}
         <a href="{{ url_for('play', cell=index) }}" class="cell"
-          >{{ board[index] }}</a
+          >{{ board.convert_list()[index] }}</a
         >
         {% endfor %}
       </div>
