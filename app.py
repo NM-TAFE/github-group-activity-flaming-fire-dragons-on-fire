@@ -30,11 +30,12 @@ def play(cell):
     return redirect(url_for('index'))
 
 
+
 @app.route('/reset')
 def reset():
 
-    # board = Board(3, 3)
-    # current_player = 'X'
+    board.reset_board()
+    game.CurrentPlayer = 'X'
     return redirect(url_for('index'))
 
 

@@ -14,9 +14,7 @@
       <h1>Tic Tac Toe</h1>
       <div class="board">
         {% for index in range(9) %}
-        <a href="{{ url_for('play', cell=index) }}" class="cell"
-          > {{ board.convert_list()[index] }}</a
-        >
+        <a href="{{ url_for('play', cell=index) }}" class="cell">{{ board.convert_list()[index] }}</a>
         {% endfor %}
       </div>
       {% if winner %}
